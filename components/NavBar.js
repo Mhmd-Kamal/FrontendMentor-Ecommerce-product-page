@@ -2,14 +2,14 @@ import React from 'react';
 import { useState } from 'react';
 
 function NavBar() {
-  const [navbarShow, setNavbarShow] = useState(false);
+  const [navbarHide, setNavbarHide] = useState(true);
 
   return (
     <nav className='flex items-center justify-between w-full p-6'>
       <div className='flex items-baseline'>
         <button
           onClick={() => {
-            setNavbarShow(true);
+            setNavbarHide(false);
           }}
         >
           <img
@@ -26,15 +26,17 @@ function NavBar() {
         </a>
       </div>
 
+      {/* //  todo: modify navbar ul to add slide motion and animation  */}
       <ul
-        className={` fixed inset-y-0 left-0 flex-col ${
-          navbarShow ? 'flex' : 'hidden'
-        } w-2/3 gap-6 p-6 text-lg font-bold bg-white text-very-vark-blue`}
+        className={` transition-transform fixed inset-y-0 left-0 flex-col flex ${
+          navbarHide && '-translate-x-full'
+        }
+         w-2/3 gap-6 p-6 text-lg font-bold bg-white text-very-vark-blue`}
       >
         <button
           className='pb-6 cursor-pointer'
           onClick={() => {
-            setNavbarShow(false);
+            setNavbarHide(true);
           }}
         >
           <img src='/images/icon-close.svg' alt='' />
