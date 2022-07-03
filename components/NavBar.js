@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from 'react';
 
 function NavBar() {
@@ -18,15 +17,11 @@ function NavBar() {
             alt='Menu'
           />
         </button>
-        <a
-          href='/'
-          className='pl-4 font-["Poppins"] text-3xl font-bold cursor-pointer text-very-vark-blue'
-        >
-          sneakers
+        <a href='/' className='pl-4 cursor-pointer'>
+          <img src='images/logo.svg' alt='' />
         </a>
       </div>
 
-      {/* //  todo: modify navbar ul to add slide motion and animation  */}
       <ul
         className={` transition-transform fixed inset-y-0 left-0 flex-col flex ${
           navbarHide && '-translate-x-full'
@@ -34,7 +29,7 @@ function NavBar() {
          w-2/3 gap-6 p-6 text-lg font-bold bg-white text-very-vark-blue`}
       >
         <button
-          className='pb-6 cursor-pointer'
+          className='w-6 pb-6 cursor-pointer'
           onClick={() => {
             setNavbarHide(true);
           }}
@@ -59,12 +54,12 @@ function NavBar() {
       </ul>
       <div className='flex items-center justify-between w-16'>
         <img
-          className='w-6 h-6 cursor-pointer'
+          className='w-5 aspect-auto cursor-pointer'
           src='images/icon-cart.svg'
           alt='Cart'
         />
         <img
-          className='w-6 h-6 cursor-pointer'
+          className='w-6 aspect-square cursor-pointer'
           src='images/image-avatar.png'
           alt='Avatar image'
         />

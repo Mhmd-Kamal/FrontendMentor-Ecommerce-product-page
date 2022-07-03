@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Carousel from '../components/Carousel';
 
 import NavBar from '../components/NavBar';
 import ProductDetails from '../components/ProductDetails';
@@ -23,6 +24,7 @@ const ProductPage = () => {
       </Head>
 
       <NavBar />
+      <Carousel />
       <ProductDetails />
     </div>
   );

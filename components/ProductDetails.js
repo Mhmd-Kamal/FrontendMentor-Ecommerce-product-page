@@ -1,6 +1,7 @@
-import React from 'react';
+import { useState } from 'react';
 
 function ProductDetails() {
+  const [count, setCount] = useState(0);
   return (
     <section className='p-6'>
       <h2 className='text-sm font-semibold tracking-widest uppercase text-theme-orange'>
@@ -28,11 +29,21 @@ function ProductDetails() {
       </div>
 
       <div className='flex items-center justify-between p-4 px-4 mb-4 rounded-xl bg-light-grayish-blue'>
-        <button className='text-3xl font-bold align-middle'>
+        <button
+          className='text-3xl font-bold align-middle'
+          onClick={() =>
+            setCount((count) => {
+              return count === 0 ? 0 : count - 1;
+            })
+          }
+        >
           <img src='/images/icon-minus.svg' alt='decrease icon' />
         </button>
-        <p className='font-bold text-very-vark-blue'>0</p>
-        <button className='text-3xl font-bold'>
+        <p className='font-bold text-very-vark-blue'>{count}</p>
+        <button
+          className='text-3xl font-bold'
+          onClick={() => setCount((count) => count + 1)}
+        >
           <img src='/images/icon-plus.svg' alt='increase icon' />
         </button>
       </div>
