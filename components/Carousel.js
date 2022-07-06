@@ -13,7 +13,7 @@ function Carousel() {
   async function getImages() {
     const res = await fetch('/api/images');
     const { mainImages, thumbImages } = await res.json();
-    // console.log(thumbImages);
+
     setMainImages(mainImages);
     setThumbImages(thumbImages);
   }
@@ -39,12 +39,21 @@ function Carousel() {
     );
   }
 
-  // useEffect(() => {
-  //   setTranslationClass(`translate-x-[${translation}px]`);
-  // }, [translation]);
+  const listener = () => {
+    console.log(window.innerWidth);
+    // resets the carousel image to the first image to avoid having two images in the same time due to the changed width and the old translation amount.
+    setTranslation(0);
+  };
+  useEffect(() => {
+    window.addEventListener('resize', listener);
+
+    return () => {
+      window.removeEventListener('resize', listener);
+    };
+  }, []);
 
   return (
-    <section className='h-80 relative w-full'>
+    <section on className='h-80 relative w-full'>
       <button
         onClick={previous}
         className=' md:hidden absolute cursor-pointer left-4 -translate-y-1/2 bg-white z-10 w-10  top-1/2 aspect-square flex justify-center items-center rounded-full'
