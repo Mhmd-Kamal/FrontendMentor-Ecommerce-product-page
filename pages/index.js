@@ -24,8 +24,10 @@ const ProductPage = () => {
       </Head>
 
       <NavBar />
-      <Carousel />
-      <ProductDetails />
+      <div className='md:flex'>
+        <Carousel />
+        <ProductDetails />
+      </div>
     </div>
   );
 };

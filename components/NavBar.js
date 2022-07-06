@@ -23,7 +23,7 @@ function NavBar() {
       </div>
 
       <ul
-        className={` transition-transform fixed inset-y-0 left-0 flex-col flex ${
+        className={` transition-transform z-50 fixed inset-y-0 left-0 flex-col flex ${
           navbarHide && '-translate-x-full'
         }
          w-2/3 gap-6 p-6 text-lg font-bold bg-white text-very-vark-blue`}
