@@ -25,6 +25,10 @@ function gallery() {
     );
   };
 
+  const thumbButton = (index) => {
+    setTranslation(index * -100);
+  };
+
   useEffect(() => {
     setTranslationClass(`translate-x-[${translation}px]`);
   }, [translation]);
@@ -37,12 +41,20 @@ function gallery() {
         {order.map((item) => {
           return (
             <div
+              key={item.value}
               className={` bg-red-400 border-2  border-lime-800 bg-lie flex-shrink-0 bg-lime w-[100px] h-[100px] flex justify-center items-center text-7xl`}
             >
               {item.value}
             </div>
           );
         })}
+      </div>
+      <div className='flex justify-around cursor-pointer'>
+        {order.map((item, index) => (
+          <a onClick={() => thumbButton(index)} key={item.value}>
+            {item.value}
+          </a>
+        ))}
       </div>
       <button onClick={nextButton}>next</button>
       <button onClick={previousButton}>previous</button>
