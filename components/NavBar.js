@@ -4,7 +4,7 @@ function NavBar() {
   const [navbarHide, setNavbarHide] = useState(true);
 
   return (
-    <nav className='flex items-center justify-between w-full p-6'>
+    <nav className='flex border-b border-l-grayish-blue items-center justify-between w-full p-6'>
       <div className='flex items-baseline'>
         <button
           onClick={() => {
@@ -25,8 +25,7 @@ function NavBar() {
       <ul
         className={` transition-transform z-50 fixed inset-y-0 left-0 flex-col flex ${
           navbarHide && '-translate-x-full'
-        }
-         w-2/3 gap-6 p-6 text-lg font-bold bg-white text-very-vark-blue`}
+        } w-2/3 gap-6 p-6 text-lg font-bold bg-white text-very-vark-blue`}
       >
         <button
           className='w-6 pb-6 cursor-pointer'

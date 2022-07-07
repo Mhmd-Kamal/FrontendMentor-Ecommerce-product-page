@@ -6,7 +6,7 @@ import ProductDetails from '../components/ProductDetails';
 
 const ProductPage = () => {
   return (
-    <div className='flex flex-col items-center min-h-screen'>
+    <div className='flex flex-col items-center min-h-screen md:px-20'>
       <Head>
         <title>Product Page</title>
         <meta
@@ -24,7 +24,7 @@ const ProductPage = () => {
       </Head>
 
       <NavBar />
-      <div className='md:flex'>
+      <div className='md:flex md:flex-grow md:justify-around md:items-center'>
         <Carousel />
         <ProductDetails />
       </div>

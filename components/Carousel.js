@@ -49,7 +49,10 @@ function Carousel() {
   }, []);
 
   return (
-    <section on className='h-80 relative w-full'>
+    <section
+      on
+      className='h-80 md:h-full relative w-full md:w-2/5 md:flex md: flex-col md:gap-8'
+    >
       <button
         onClick={previous}
         className=' md:hidden absolute cursor-pointer left-4 -translate-y-1/2 bg-white z-10 w-10  top-1/2 aspect-square flex justify-center items-center rounded-full'
@@ -67,9 +70,9 @@ function Carousel() {
           className={`flex transition-all duration-1000`}
         >
           {mainImages.map((image) => (
-            <li className='w-full shrink-0' key={image}>
+            <li className='w-full shrink-0 ' key={image}>
               <img
-                className='h-80 object-cover w-full'
+                className='h-80 md:h-auto object-cover w-full  md:rounded-2xl'
                 src={`images/product-images/main/${image}`}
                 alt='product image'
               />
@@ -83,9 +86,15 @@ function Carousel() {
       >
         <img src='images/icon-next.svg' alt='next button' />
       </button>
-      <div id='thumbnails' className='hidden md:flex'>
+      <div id='thumbnails' className='hidden md:flex md:justify-between'>
         {thumbImages.map((thumb) => (
-          <img key={thumb} src={`images/product-images/thumb/${thumb}`} />
+          <div className='w-1/5 rounded-2xl hover:border-[3px] hover:border-theme-orange/100'>
+            <img
+              className=' rounded-2xl hover:opacity-40'
+              key={thumb}
+              src={`images/product-images/thumb/${thumb}`}
+            />
+          </div>
         ))}
       </div>
     </section>
