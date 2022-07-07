@@ -36,6 +36,11 @@ function Carousel() {
     );
   }
 
+  function handleClickthumb(index) {
+    const carouselWidth = ref.current.offsetWidth;
+    setTranslation(index * -1 * carouselWidth);
+  }
+
   const listener = () => {
     // resets the carousel image to the first image to avoid having two images in the same time due to the changed width and the old translation amount.
     setTranslation(0);
@@ -87,8 +92,11 @@ function Carousel() {
         <img src='images/icon-next.svg' alt='next button' />
       </button>
       <div id='thumbnails' className='hidden md:flex md:justify-between'>
-        {thumbImages.map((thumb) => (
-          <div className='w-1/5 rounded-2xl hover:border-[3px] hover:border-theme-orange/100'>
+        {thumbImages.map((thumb, index) => (
+          <div
+            onClick={() => handleClickthumb(index)}
+            className='w-1/5 rounded-2xl hover:border-[3px] hover:border-theme-orange/100'
+          >
             <img
               className=' rounded-2xl hover:opacity-40'
               key={thumb}
