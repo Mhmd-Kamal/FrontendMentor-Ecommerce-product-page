@@ -4,9 +4,6 @@ function Carousel() {
   const [mainImages, setMainImages] = useState([]);
   const [thumbImages, setThumbImages] = useState([]);
   const [translation, setTranslation] = useState(0);
-  const [translationClass, setTranslationClass] = useState(
-    `translate-x-[${translation}px]`
-  );
 
   const ref = useRef();
 
@@ -40,7 +37,6 @@ function Carousel() {
   }
 
   const listener = () => {
-    console.log(window.innerWidth);
     // resets the carousel image to the first image to avoid having two images in the same time due to the changed width and the old translation amount.
     setTranslation(0);
   };
