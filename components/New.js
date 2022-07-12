@@ -1,6 +1,15 @@
-import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { cartState } from '../utils/atoms';
+
+import { useEffect } from 'react';
 
 function Cart() {
+  const cartStateValue = useRecoilValue(cartState);
+
+  useEffect(() => {
+    console.log(cartStateValue);
+  }, [cartStateValue]);
+
   return (
     <div className='absolute z-40 drop-shadow-2xl flex flex-col bg-white top-20 w-[355px] h-64 rounded-lg sm:right-3 md:right-10'>
       <p className='font-bold border-b-[1px] text-very-vark-blue p-6'>Cart</p>

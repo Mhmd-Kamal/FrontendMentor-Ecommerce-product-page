@@ -54,13 +54,10 @@ function Carousel() {
   }, []);
 
   return (
-    <section
-      on
-      className='h-80 md:h-full relative w-full md:w-2/5 md:flex md: flex-col md:gap-8'
-    >
+    <section className='relative flex-col w-full h-80 md:h-full md:w-2/5 md:flex md:gap-8'>
       <button
         onClick={previous}
-        className=' md:hidden absolute cursor-pointer left-4 -translate-y-1/2 bg-white z-10 w-10  top-1/2 aspect-square flex justify-center items-center rounded-full'
+        className='absolute z-10 flex items-center justify-center w-10 -translate-y-1/2 bg-white rounded-full cursor-pointer md:hidden left-4 top-1/2 aspect-square'
       >
         <img
           className=''
@@ -68,7 +65,7 @@ function Carousel() {
           alt='previous button'
         />
       </button>
-      <div className=' overflow-x-hidden'>
+      <div className='overflow-x-hidden '>
         <ul
           style={{ transform: `translateX(${translation}px)` }}
           ref={ref}
@@ -77,7 +74,7 @@ function Carousel() {
           {mainImages.map((image) => (
             <li className='w-full shrink-0 ' key={image}>
               <img
-                className='h-80 md:h-auto object-cover w-full  md:rounded-2xl'
+                className='object-cover w-full h-80 md:h-auto md:rounded-2xl'
                 src={`images/product-images/main/${image}`}
                 alt='product image'
               />
@@ -87,7 +84,7 @@ function Carousel() {
       </div>
       <button
         onClick={next}
-        className='md:hidden absolute cursor-pointer right-4 -translate-y-1/2 bg-white z-10 w-10  top-1/2 aspect-square flex justify-center items-center rounded-full'
+        className='absolute z-10 flex items-center justify-center w-10 -translate-y-1/2 bg-white rounded-full cursor-pointer md:hidden right-4 top-1/2 aspect-square'
       >
         <img src='images/icon-next.svg' alt='next button' />
       </button>

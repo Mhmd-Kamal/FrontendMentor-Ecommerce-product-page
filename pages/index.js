@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Carousel from '../components/Carousel';
+import LightBox from '../components/LightBox';
 
 import NavBar from '../components/NavBar';
 import Cart from '../components/New';
@@ -25,6 +26,7 @@ const ProductPage = () => {
       </Head>
 
       <NavBar />
+      {/* <LightBox /> */}
       <Cart />
       <div className='md:flex md:flex-grow md:justify-around md:items-center'>
         <Carousel />

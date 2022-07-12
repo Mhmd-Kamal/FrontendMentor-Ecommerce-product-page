@@ -1,7 +1,16 @@
 import { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+
+import { cartState } from '../utils/atoms';
 
 function ProductDetails() {
   const [count, setCount] = useState(0);
+
+  const setCartState = useSetRecoilState(cartState);
+
+  function handleAddToCart() {
+    setCartState((cart) => [...cart, count]);
+  }
   return (
     <section className='p-6 md:w-2/5 md:p-0'>
       <h2 className='text-sm font-semibold tracking-widest uppercase text-theme-orange'>
@@ -47,7 +56,10 @@ function ProductDetails() {
             <img src='/images/icon-plus.svg' alt='increase icon' />
           </button>
         </div>
-        <button className='flex items-center justify-center w-full p-4 font-bold rounded-xl text-light-grayish-blue bg-theme-orange hover:opacity-50'>
+        <button
+          onClick={handleAddToCart}
+          className='flex items-center justify-center w-full p-4 font-bold rounded-xl text-light-grayish-blue bg-theme-orange hover:opacity-50'
+        >
           <svg
             width='22'
             height='20'
