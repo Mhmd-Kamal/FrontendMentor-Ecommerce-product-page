@@ -1,16 +1,32 @@
 import { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 
-import { cartState } from '../utils/atoms';
+import { cartStateAtom } from '../utils/atoms';
 
-function ProductDetails() {
+function ProductDetails({ product }) {
   const [count, setCount] = useState(0);
 
-  const setCartState = useSetRecoilState(cartState);
+  const setCartState = useSetRecoilState(cartStateAtom);
 
-  function handleAddToCart() {
-    setCartState((cart) => [...cart, count]);
+  function handleAddToCart(product) {
+    if (count !== 0) {
+      setCartState((cart) => {
+        const index = cart.findIndex((item) => item.title === product.title);
+
+        if (index === -1) {
+          return [...cart, { ...product, quantity: count }];
+        } else {
+          const newCart = [
+            ...cart.slice(0, index),
+            { ...cart[index], quantity: cart[index].quantity + count },
+            ...cart.slice(index + 1),
+          ];
+          return newCart;
+        }
+      });
+    }
   }
+
   return (
     <section className='p-6 md:w-2/5 md:p-0'>
       <h2 className='text-sm font-semibold tracking-widest uppercase text-theme-orange'>
@@ -18,23 +34,25 @@ function ProductDetails() {
       </h2>
 
       <h1 className='py-4 text-3xl lg:text-5xl font-bold text-very-vark-blue'>
-        Fall Limited Edition Sneakers
+        {product.title}
       </h1>
 
       <p className='leading-7 md:pt-4 text-dark-grayish-blue'>
-        These low-profile sneakers are your perfect casual wear companion.
-        Featuring a durable rubber outer sole, they’ll withstand everything the
-        weather can offer.
+        {product.description}
       </p>
 
       <div className='flex items-center justify-between py-8 md:flex-col md:items-start md:gap-2'>
         <div className='flex items-center justify-between'>
-          <p className='pr-5 text-3xl font-bold text-very-vark-blue'>$125.00</p>
+          <p className='pr-5 text-3xl font-bold text-very-vark-blue'>{`$${product.price.toFixed(
+            2
+          )}`}</p>
           <p className='px-2 font-bold rounded-md text-theme-orange bg-pale-orange'>
-            50%
+            {product.sale}%
           </p>
         </div>
-        <p className='font-bold line-through text-grayish-blue'>$250.00</p>
+        <p className='font-bold line-through text-grayish-blue'>{`$${product.priceBeforeSale.toFixed(
+          2
+        )}`}</p>
       </div>
       <div className='md:flex md:gap-2'>
         <div className='flex items-center justify-between p-4 px-4 mb-4 rounded-xl bg-light-grayish-blue md:w-5/12 md:mb-0'>
@@ -57,7 +75,7 @@ function ProductDetails() {
           </button>
         </div>
         <button
-          onClick={handleAddToCart}
+          onClick={() => handleAddToCart(product)}
           className='flex items-center justify-center w-full p-4 font-bold rounded-xl text-light-grayish-blue bg-theme-orange hover:opacity-50'
         >
           <svg

@@ -1,7 +1,11 @@
 import { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { showCartAtom } from '../utils/atoms';
 
 function NavBar() {
   const [navbarHide, setNavbarHide] = useState(true);
+
+  const showCart = useSetRecoilState(showCartAtom);
 
   return (
     <nav className='flex items-center justify-between w-full p-6 border-b border-l-grayish-blue md:p-0 md:h-28'>
@@ -53,7 +57,10 @@ function NavBar() {
           <a href='/contact'></a>Contact
         </li>
       </ul>
-      <div className='flex items-center justify-between w-16 md:w-auto md:gap-12'>
+      <div
+        onClick={() => showCart((state) => !state)}
+        className='flex items-center justify-between w-16 md:w-auto md:gap-12'
+      >
         <img
           className='w-6 cursor-pointer aspect-auto'
           src='images/icon-cart.svg'

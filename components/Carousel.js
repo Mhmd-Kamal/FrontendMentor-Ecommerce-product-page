@@ -91,8 +91,9 @@ function Carousel() {
       <div id='thumbnails' className='hidden md:flex md:justify-between'>
         {thumbImages.map((thumb, index) => (
           <div
+            key={thumb}
             onClick={() => handleClickthumb(index)}
-            className='w-1/5 rounded-2xl hover:border-[3px] hover:border-theme-orange/100'
+            className='w-1/5 rounded-2xl cursor-pointer hover:border-[3px] hover:border-theme-orange/100'
           >
             <img
               className=' rounded-2xl hover:opacity-40'
