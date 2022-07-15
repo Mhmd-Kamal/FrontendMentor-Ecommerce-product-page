@@ -4,6 +4,7 @@ function Carousel() {
   const [mainImages, setMainImages] = useState([]);
   const [thumbImages, setThumbImages] = useState([]);
   const [translation, setTranslation] = useState(0);
+  const [activeThumb, setActiveThumb] = useState(0);
 
   const ref = useRef();
 
@@ -37,6 +38,7 @@ function Carousel() {
   }
 
   function handleClickthumb(index) {
+    setActiveThumb(index);
     const carouselWidth = ref.current.offsetWidth;
     setTranslation(index * -1 * carouselWidth);
   }
@@ -44,6 +46,7 @@ function Carousel() {
   const listener = () => {
     // resets the carousel image to the first image to avoid having two images in the same time due to the changed width and the old translation amount.
     setTranslation(0);
+    setActiveThumb(0);
   };
   useEffect(() => {
     window.addEventListener('resize', listener);
@@ -93,10 +96,14 @@ function Carousel() {
           <div
             key={thumb}
             onClick={() => handleClickthumb(index)}
-            className='w-1/5 rounded-2xl cursor-pointer hover:border-[3px] hover:border-theme-orange/100'
+            className={`w-1/5 rounded-lg cursor-pointer ${
+              activeThumb === index && 'border-2 border-theme-orange/100'
+            }`}
           >
             <img
-              className=' rounded-2xl hover:opacity-40'
+              className={`transition-opacity outline-none rounded-lg hover:opacity-40 ${
+                activeThumb === index && 'opacity-40'
+              }`}
               key={thumb}
               src={`images/product-images/thumb/${thumb}`}
             />
