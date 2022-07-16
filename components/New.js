@@ -33,8 +33,8 @@ function Cart() {
                 </span>
               </p>
             </div>
-            {/*  TODO: add delete functionality for this button */}
             <img
+              className='cursor-pointer'
               onClick={handleDeleteCart}
               src='images/icon-delete.svg'
               alt=''
