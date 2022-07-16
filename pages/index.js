@@ -7,7 +7,7 @@ import NavBar from '../components/NavBar';
 import Cart from '../components/New';
 import ProductDetails from '../components/ProductDetails';
 
-import { showCartAtom } from '../utils/atoms';
+import { showCartAtom, showLightboxAtom } from '../utils/atoms';
 
 const ProductPage = () => {
   const product = {
@@ -20,6 +20,7 @@ const ProductPage = () => {
   };
 
   const showCart = useRecoilValue(showCartAtom);
+  const showLightbox = useRecoilValue(showLightboxAtom);
 
   return (
     <div className='flex flex-col items-center min-h-screen md:px-20'>
@@ -38,9 +39,8 @@ const ProductPage = () => {
           type='image/x-icon'
         />
       </Head>
-
       <NavBar />
-      {/* <LightBox /> */}
+      {showLightbox && <LightBox />}
       {showCart && <Cart />}
       <div className='md:flex md:flex-grow md:justify-around md:items-center'>
         <Carousel />

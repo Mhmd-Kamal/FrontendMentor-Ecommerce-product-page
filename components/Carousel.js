@@ -1,4 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
+import { useRecoilState } from 'recoil';
+
+import { showLightboxAtom } from '../utils/atoms';
 
 function Carousel() {
   const [mainImages, setMainImages] = useState([]);
@@ -8,6 +11,9 @@ function Carousel() {
 
   const ref = useRef();
 
+  const [showLightbox, setShowLightbox] = useRecoilState(showLightboxAtom);
+
+  // TODO: use get static props instead.
   async function getImages() {
     const res = await fetch('/api/images');
     const { mainImages, thumbImages } = await res.json();
@@ -20,12 +26,16 @@ function Carousel() {
     getImages();
   }, []);
 
+  //Carousel functionality handlers
   function next() {
     const carouselWidth = ref.current.offsetWidth;
     setTranslation((translation) =>
       translation <= carouselWidth * -1 * (mainImages.length - 1)
         ? 0
         : translation - carouselWidth
+    );
+    setActiveThumb((currentThumb) =>
+      currentThumb < mainImages.length - 1 ? currentThumb + 1 : 0
     );
   }
   function previous() {
@@ -34,6 +44,9 @@ function Carousel() {
       translation >= 0
         ? carouselWidth * -1 * (mainImages.length - 1)
         : translation + carouselWidth
+    );
+    setActiveThumb((currentThumb) =>
+      currentThumb > 0 ? currentThumb - 1 : mainImages.length - 1
     );
   }
 
@@ -47,6 +60,7 @@ function Carousel() {
     // resets the carousel image to the first image to avoid having two images in the same time due to the changed width and the old translation amount.
     setTranslation(0);
     setActiveThumb(0);
+    setShowLightbox(false);
   };
   useEffect(() => {
     window.addEventListener('resize', listener);
@@ -57,40 +71,73 @@ function Carousel() {
   }, []);
 
   return (
-    <section className='relative  w-full h-80 md:h-full  md:flex md:flex-col md:gap-8 md:w-80 lg:w-96 xl:w-1/3'>
-      <button
-        onClick={previous}
-        className='absolute z-10 flex items-center justify-center w-10 -translate-y-1/2 bg-white rounded-full cursor-pointer md:hidden left-4 top-1/2 aspect-square'
-      >
-        <img
-          className=''
-          src='images/icon-previous.svg'
-          alt='previous button'
-        />
-      </button>
-      <div className='overflow-x-hidden '>
-        <ul
-          style={{ transform: `translateX(${translation}px)` }}
-          ref={ref}
-          className={`flex transition-all duration-1000`}
+    <section className=' w-full h-80 md:h-full  md:flex md:flex-col md:gap-8 md:w-80 lg:w-96 xl:w-1/3'>
+      <div className='relative'>
+        <button
+          id='previous button'
+          onClick={previous}
+          className={`group absolute z-10 flex items-center justify-center w-10 -translate-y-1/2 bg-white rounded-full cursor-pointer top-1/2 aspect-square ${
+            showLightbox ? '-left-5' : 'md:hidden left-4'
+          }`}
         >
-          {mainImages.map((image) => (
-            <li className='w-full shrink-0 ' key={image}>
-              <img
-                className='object-cover w-full h-80 md:h-auto md:rounded-2xl md:w-80 lg:w-96 xl:w-full'
-                src={`images/product-images/main/${image}`}
-                alt='product image'
-              />
-            </li>
-          ))}
-        </ul>
+          <svg
+            className='stroke-very-vark-blue group-hover:stroke-theme-orange'
+            width='12'
+            height='18'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              d='M11 1 3 9l8 8'
+              stroke-width='3'
+              fill='none'
+              fill-rule='evenodd'
+            />
+          </svg>
+        </button>
+        <div
+          onClick={() => {
+            screen.width >= 768 && setShowLightbox(true);
+          }}
+          className='overflow-x-hidden md:cursor-pointer'
+        >
+          <ul
+            style={{ transform: `translateX(${translation}px)` }}
+            ref={ref}
+            className={`flex transition-all duration-1000`}
+          >
+            {mainImages.map((image) => (
+              <li className='w-full shrink-0 ' key={image}>
+                <img
+                  className='object-cover w-full h-80 md:h-auto md:rounded-2xl md:w-80 lg:w-96 xl:w-full'
+                  src={`images/product-images/main/${image}`}
+                  alt='product image'
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+        <button
+          id='next button'
+          onClick={next}
+          className={`group absolute z-10 flex items-center justify-center w-10 -translate-y-1/2 bg-white rounded-full cursor-pointer top-1/2 aspect-square ${
+            showLightbox ? '-right-5' : 'md:hidden right-4'
+          }`}
+        >
+          <svg
+            className='stroke-very-vark-blue group-hover:stroke-theme-orange '
+            width='13'
+            height='18'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              d='m2 1 8 8-8 8'
+              stroke-width='3'
+              fill='none'
+              fill-rule='evenodd'
+            />
+          </svg>
+        </button>
       </div>
-      <button
-        onClick={next}
-        className='absolute z-10 flex items-center justify-center w-10 -translate-y-1/2 bg-white rounded-full cursor-pointer md:hidden right-4 top-1/2 aspect-square'
-      >
-        <img src='images/icon-next.svg' alt='next button' />
-      </button>
       <div id='thumbnails' className='hidden md:flex md:justify-between'>
         {thumbImages.map((thumb, index) => (
           <div

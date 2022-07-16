@@ -1,10 +1,17 @@
+import { useSetRecoilState } from 'recoil';
+import { showLightboxAtom } from '../utils/atoms';
 import Carousel from './Carousel';
 
 function LightBox() {
+  const setShowLightbox = useSetRecoilState(showLightboxAtom);
+
   return (
-    <div id='lightbox' className='absolute inset-0 z-50  p-24 bg-black/75'>
+    <div id='lightbox' className='absolute inset-0 z-50 p-24 bg-black/75 '>
       <div className='flex flex-col items-center justify-center'>
-        <button className='m-4 self-end'>
+        <button
+          onClick={() => setShowLightbox(false)}
+          className='m-4 self-end md:w-80 lg:w-96 xl:w-1/3'
+        >
           <svg
             className='scale-150 hover:fill-theme-orange fill-light-grayish-blue'
             width='14'
