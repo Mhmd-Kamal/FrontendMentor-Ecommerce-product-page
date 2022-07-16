@@ -23,7 +23,7 @@ function NavBar() {
           />
         </button>
         <a href='/' className='pl-4 cursor-pointer'>
-          <img src='images/logo.svg' alt='' />
+          <img src='images/logo.svg' alt='Logo image' />
         </a>
       </div>
 

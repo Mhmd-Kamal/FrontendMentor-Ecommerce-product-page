@@ -74,7 +74,7 @@ function Carousel() {
     <section className=' w-full h-80 md:h-auto  md:flex md:flex-col md:gap-8 md:w-80 lg:w-96'>
       <div className='relative'>
         <button
-          id='previous button'
+          id='previous_button'
           onClick={previous}
           className={`group absolute z-10 flex items-center justify-center w-10 -translate-y-1/2 bg-white rounded-full cursor-pointer top-1/2 aspect-square ${
             showLightbox ? '-left-5' : 'md:hidden left-4'
@@ -117,7 +117,7 @@ function Carousel() {
           </ul>
         </div>
         <button
-          id='next button'
+          id='next_button'
           onClick={next}
           className={`group absolute z-10 flex items-center justify-center w-10 -translate-y-1/2 bg-white rounded-full cursor-pointer top-1/2 aspect-square ${
             showLightbox ? '-right-5' : 'md:hidden right-4'
@@ -153,6 +153,7 @@ function Carousel() {
               }`}
               key={thumb}
               src={`images/product-images/thumb/${thumb}`}
+              alt='Thumbnail images'
             />
           </div>
         ))}
