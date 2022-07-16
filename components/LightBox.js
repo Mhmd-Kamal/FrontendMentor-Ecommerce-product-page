@@ -6,11 +6,11 @@ function LightBox() {
   const setShowLightbox = useSetRecoilState(showLightboxAtom);
 
   return (
-    <div id='lightbox' className='absolute inset-0 z-50 p-24 bg-black/75 '>
-      <div className='flex flex-col items-center justify-center'>
+    <div id='lightbox' className='absolute inset-0 z-50 bg-black/75 '>
+      <div className='flex h-screen flex-col items-center justify-center'>
         <button
           onClick={() => setShowLightbox(false)}
-          className='m-4 self-end md:w-80 lg:w-96 xl:w-1/3'
+          className='flex justify-end my-4 md:w-80 lg:w-96'
         >
           <svg
             className='scale-150 hover:fill-theme-orange fill-light-grayish-blue'

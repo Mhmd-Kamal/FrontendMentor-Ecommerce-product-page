@@ -71,7 +71,7 @@ function Carousel() {
   }, []);
 
   return (
-    <section className=' w-full h-80 md:h-full  md:flex md:flex-col md:gap-8 md:w-80 lg:w-96 xl:w-1/3'>
+    <section className=' w-full h-80 md:h-auto  md:flex md:flex-col md:gap-8 md:w-80 lg:w-96'>
       <div className='relative'>
         <button
           id='previous button'
@@ -108,7 +108,7 @@ function Carousel() {
             {mainImages.map((image) => (
               <li className='w-full shrink-0 ' key={image}>
                 <img
-                  className='object-cover w-full h-80 md:h-auto md:rounded-2xl md:w-80 lg:w-96 xl:w-full'
+                  className='object-cover w-full h-80 md:h-auto md:rounded-2xl md:w-80 lg:w-96 '
                   src={`images/product-images/main/${image}`}
                   alt='product image'
                 />
