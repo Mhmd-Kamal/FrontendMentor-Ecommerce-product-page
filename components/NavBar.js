@@ -57,11 +57,9 @@ function NavBar() {
           <a href='/contact'></a>Contact
         </li>
       </ul>
-      <div
-        onClick={() => showCart((state) => !state)}
-        className='flex items-center justify-between w-16 md:w-auto md:gap-12'
-      >
+      <div className='flex items-center justify-between w-16 md:w-auto md:gap-12'>
         <img
+          onClick={() => showCart((state) => !state)}
           className='w-6 cursor-pointer aspect-auto'
           src='images/icon-cart.svg'
           alt='Cart'
