@@ -57,7 +57,7 @@ function Carousel() {
   }, []);
 
   return (
-    <section className='relative flex-col w-full h-80 md:h-full md:w-2/5 md:flex md:gap-8'>
+    <section className='relative  w-full h-80 md:h-full  md:flex md:flex-col md:gap-8 md:w-80 lg:w-96 xl:w-1/3'>
       <button
         onClick={previous}
         className='absolute z-10 flex items-center justify-center w-10 -translate-y-1/2 bg-white rounded-full cursor-pointer md:hidden left-4 top-1/2 aspect-square'
@@ -77,7 +77,7 @@ function Carousel() {
           {mainImages.map((image) => (
             <li className='w-full shrink-0 ' key={image}>
               <img
-                className='object-cover w-full h-80 md:h-auto md:rounded-2xl'
+                className='object-cover w-full h-80 md:h-auto md:rounded-2xl md:w-80 lg:w-96 xl:w-full'
                 src={`images/product-images/main/${image}`}
                 alt='product image'
               />

@@ -45,16 +45,16 @@ function NavBar() {
           <a href='/collections'>Collections</a>
         </li>
         <li className='hover:cursor-pointer hover:text-very-vark-blue hover:border-b-4 hover:border-theme-orange md:flex md:items-center'>
-          <a href='/men'></a>Men
+          <a href='/men'>Men</a>
         </li>
         <li className='hover:cursor-pointer hover:text-very-vark-blue hover:border-b-4 hover:border-theme-orange md:flex md:items-center'>
-          <a href='/women'></a>Women
+          <a href='/women'>Women</a>
         </li>
         <li className='hover:cursor-pointer hover:text-very-vark-blue hover:border-b-4 hover:border-theme-orange md:flex md:items-center'>
-          <a href='/about'></a>About
+          <a href='/about'>About</a>
         </li>
         <li className='hover:cursor-pointer hover:text-very-vark-blue hover:border-b-4 hover:border-theme-orange md:flex md:items-center'>
-          <a href='/contact'></a>Contact
+          <a href='/contact'>Contact</a>
         </li>
       </ul>
       <div className='flex items-center justify-between w-16 md:w-auto md:gap-12'>
